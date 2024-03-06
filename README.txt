@@ -1,0 +1,1 @@
+This is test project containing UI automated tests for website https://skleptest.pl/
