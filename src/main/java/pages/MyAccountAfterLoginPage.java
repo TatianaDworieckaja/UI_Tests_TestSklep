@@ -29,9 +29,20 @@ public class MyAccountAfterLoginPage extends HomePage {
         return myAccountContent.getText();
     }
 
+    /**
+     * this method verified that after user is logged in his name (the part of his email before @) is displayed on the screen
+     * private method extractUserName() is used to get username form email
+     * @return boolean
+     */
     public boolean isRegistered(){
         return getMyAccountContentText().contains(extractUserName());
     }
+
+    /**
+     * method which extracts usersname from email
+     * @return username
+     * (e.g. in case of tatiana@gmail.com it returns tatiana)
+     */
     private String extractUserName() {
         String testEmail = ProjectProperties.getTestRegEmail();
         char[] charArray = testEmail.toCharArray();
@@ -39,9 +50,7 @@ public class MyAccountAfterLoginPage extends HomePage {
         for (char element : charArray) {
             if (element != '@') {
                 userName.append(element);
-            } else {
-                break;
-            }
+            } else {break;}
         }
         return userName.toString();
     }
