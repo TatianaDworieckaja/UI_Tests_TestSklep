@@ -2,6 +2,7 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.log4testng.Logger;
 
 public class BrowserFactory {
@@ -10,7 +11,9 @@ public class BrowserFactory {
 
     public static WebDriver createDriver() {
         if (Settings.getBrowserType().equals("CHROME")) {
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless");
+            driver = new ChromeDriver(options);
         } else {
             log.error(new IllegalArgumentException("Browser is not supported"));
         }
