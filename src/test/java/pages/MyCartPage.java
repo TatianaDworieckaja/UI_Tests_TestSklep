@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -19,11 +20,16 @@ public class MyCartPage extends HomePage {
         PageFactory.initElements(webDriver, this);
     }
 
+    public MyCartPage verifyCartIsEmpty(){
+        Assert.assertTrue(getCartItems().isEmpty());
+        return this;
+    }
+
     public List<WebElement> getCartItems() {
         return cartItems;
     }
 
-    public MyAccountAfterLoginPage clickAccountLink(){
+    public MyAccountAfterLoginPage continueToMyAccount() {
         accountLink.click();
         return new MyAccountAfterLoginPage(webDriver);
     }

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import utils.ProjectProperties;
 
 public class MyAccountAfterLoginPage extends HomePage {
@@ -34,8 +35,9 @@ public class MyAccountAfterLoginPage extends HomePage {
      * private method extractUserName() is used to get username form email
      * @return boolean
      */
-    public boolean isRegistered(){
-        return getMyAccountContentText().contains(extractUserName());
+    public MyAccountAfterLoginPage verifyIfRegistered(){
+        Assert.assertTrue(getMyAccountContentText().contains(extractUserName()));
+        return this;
     }
 
     /**

@@ -1,10 +1,11 @@
 package pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import utils.ProjectProperties;
 
 public class MyAccountBeforeLoginPage extends HomePage {
 
@@ -32,20 +33,31 @@ public class MyAccountBeforeLoginPage extends HomePage {
    //    return new MyAccountAfterLoginPage();
    //}
 
+    public MyAccountBeforeLoginPage verifyMyAccountBeforeLoginPage(){
+        Assert.assertTrue(getMyAccountText().contains("My Account"), "MyAccount page is displayed incorrectly");
+        return this;
+    }
+
+    public MyAccountAfterLoginPage registerUser(){
+        setEmail(ProjectProperties.getTestRegEmail());
+        setPassword(ProjectProperties.getTestRegPassword());
+        clickSubmitButton();
+        return new MyAccountAfterLoginPage(webDriver);
+    }
+
     public String getMyAccountText(){
         return myAccountText.getText();
     }
 
-    public void setUsername(String username) {
-        emailInput.sendKeys(username);
+    public void setEmail(String email) {
+        emailInput.sendKeys(email);
     }
 
     public void setPassword(String password) {
         passwordInput.sendKeys(password);
     }
 
-    public MyAccountAfterLoginPage clickSubmitButton(){
+    public void clickSubmitButton(){
         submitButton.click();
-        return new MyAccountAfterLoginPage(webDriver);
     }
 }
