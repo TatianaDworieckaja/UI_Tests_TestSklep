@@ -3,22 +3,26 @@ package utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.log4testng.Logger;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BrowserFactory {
-    private static WebDriver driver;
-    private static final Logger log = Logger.getLogger(BrowserFactory.class);
 
     public static WebDriver createDriver() {
-        if (Settings.getBrowserType().equals("CHROME")) {
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless");
-            driver = new ChromeDriver(options);
-        } else {
-            log.error(new IllegalArgumentException("Browser is not supported"));
+        WebDriver webDriver;
+        switch (ProjectProperties.getBrowserType()) {
+            case "FIREFOX":
+                webDriver = new FirefoxDriver();
+                break;
+            case "EDGE":
+                webDriver = new EdgeDriver();
+                break;
+            default:
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--headless");
+                webDriver = new ChromeDriver(options);
         }
-        driver.manage().window().maximize();
-        return driver;
+        webDriver.manage().window().maximize();
+        return webDriver;
     }
-
 }

@@ -1,21 +1,36 @@
 package pages;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.List;
 
-public class MyCartPage extends BasePage {
+public class MyCartPage extends HomePage {
 
-    private static final By MY_CART_BTN_LOCATOR = By.xpath("//li[@class='top-cart']");
-    private static final By CART_ITEMS_LOCATOR = By.xpath("//tr[@class = 'woocommerce-cart-form__cart-item cart_item']");
+    @FindBy(xpath = "//tr[@class = 'woocommerce-cart-form__cart-item cart_item']")
+    List<WebElement> cartItems;
+    @FindBy(xpath = "//li[@class = 'top-account']")
+    WebElement accountLink;
 
-    public void openPage() {
-        openPage(MY_CART_BTN_LOCATOR);
+    public MyCartPage(WebDriver webDriver){
+        super(webDriver);
+        PageFactory.initElements(webDriver, this);
+    }
+
+    public MyCartPage verifyCartIsEmpty(){
+        Assert.assertTrue(getCartItems().isEmpty());
+        return this;
     }
 
     public List<WebElement> getCartItems() {
-        return getElements(CART_ITEMS_LOCATOR);
+        return cartItems;
     }
 
+    public MyAccountAfterLoginPage continueToMyAccount() {
+        accountLink.click();
+        return new MyAccountAfterLoginPage(webDriver);
+    }
 }
