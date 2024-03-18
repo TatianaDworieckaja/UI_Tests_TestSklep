@@ -11,6 +11,10 @@
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <baseURL>https://skleptest.pl/</baseURL>
+        <browserType>EDGE</browserType>
+        <testRegEmail>tebejik323@mcuma.com</testRegEmail>
+        <testRegPassword>1234567ABcde!?</testRegPassword>
     </properties>
 
     <dependencies>
@@ -66,6 +70,19 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version> 3.2.5</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
+
 
 </project>

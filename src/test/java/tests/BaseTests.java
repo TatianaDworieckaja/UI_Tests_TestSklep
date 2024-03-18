@@ -5,7 +5,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import pages.HomePage;
 import utils.BrowserFactory;
-import utils.ProjectProperties;
 
 public class BaseTests {
 
@@ -15,7 +14,8 @@ public class BaseTests {
     @BeforeClass
     public void launchApplication() {
         webDriver = BrowserFactory.createDriver();
-        webDriver.get(ProjectProperties.getBaseUrl());
+        //webDriver.get(ProjectProperties.getBaseUrl());
+        webDriver.navigate().to("https://skleptest.pl/");
         homePage = new HomePage(webDriver);
     }
 
