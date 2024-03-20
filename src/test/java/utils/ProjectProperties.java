@@ -5,33 +5,36 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ProjectProperties {
-    private static Properties properties;
+    private  Properties properties;
 
-    public static Properties getProperties(){
-        if(properties==null){
-            properties = new Properties();
+    public  ProjectProperties(){
+       properties = new Properties();
             try {
-                properties.load(new FileInputStream("src/test/resources/project.properties"));
+                properties.load(new FileInputStream("project.properties"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
-        return properties;
     }
 
-    public static String getBaseUrl(){
-        return getProperties().getProperty("baseUrl");
+    public  String getBaseUrl(){
+        return properties.getProperty("baseUrl");
     }
 
-    public static String getBrowserType(){
-        return getProperties().getProperty("browserType");
+    public  String getBrowserType(){
+        return properties.getProperty("browserType");
     }
 
-    public static String getTestRegEmail(){
-        return getProperties().getProperty("testRegEmail");
+    public  String getTestRegEmail(){
+        return properties.getProperty("testRegEmail");
     }
 
-    public static String getTestRegPassword(){
-        return getProperties().getProperty("testRegPassword");
+    public  String getTestRegPassword(){
+        return properties.getProperty("testRegPassword");
     }
+
+    public static void main(String[] args) {
+        ProjectProperties projectProperties = new ProjectProperties();
+        System.out.println(projectProperties.getBaseUrl());
+    }
+
 }

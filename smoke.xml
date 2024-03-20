@@ -3,7 +3,11 @@
 <suite name="All tests">
     <test name="First test">
         <classes>
-            <class name="tests.RegistrationTest"/>
+            <class name="tests.RegistrationTest">
+                <methods>
+                    <include name=""/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
