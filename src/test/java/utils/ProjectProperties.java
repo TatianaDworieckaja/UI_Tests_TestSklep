@@ -2,6 +2,7 @@ package utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ProjectProperties {
@@ -9,11 +10,11 @@ public class ProjectProperties {
 
     public  ProjectProperties(){
        properties = new Properties();
-            try {
-                properties.load(new FileInputStream("project.properties"));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        try (final InputStream inputStream = ProjectProperties.class.getClassLoader().getResourceAsStream("project.properties")) {
+            properties.load(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public  String getBaseUrl(){
