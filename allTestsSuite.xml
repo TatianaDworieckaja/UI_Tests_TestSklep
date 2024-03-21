@@ -3,11 +3,7 @@
 <suite name="Smoke">
     <test name="Single test">
         <classes>
-            <class name="tests.RegistrationTest">
-                <methods>
-                    <include name="verifyMyAccountBeforeLoginPage"/>
-                </methods>
-            </class>
+            <class name="tests.RegistrationTest"/>
         </classes>
     </test>
 </suite>

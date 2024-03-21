@@ -6,31 +6,32 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ProjectProperties {
-    private  Properties properties;
+    private static Properties properties;
 
-    public  ProjectProperties(){
+    public static  Properties getProperties(){
        properties = new Properties();
         try (final InputStream inputStream = ProjectProperties.class.getClassLoader().getResourceAsStream("project.properties")) {
             properties.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return properties;
     }
 
-    public  String getBaseUrl(){
-        return properties.getProperty("baseUrl");
+    public static String getBaseUrl(){
+        return getProperties().getProperty("baseUrl");
     }
 
-    public  String getBrowserType(){
-        return properties.getProperty("browserType");
+    public static String getBrowserType(){
+        return getProperties().getProperty("browserType");
     }
 
-    public  String getTestRegEmail(){
-        return properties.getProperty("testRegEmail");
+    public static String getTestRegEmail(){
+        return getProperties().getProperty("testRegEmail");
     }
 
-    public  String getTestRegPassword(){
-        return properties.getProperty("testRegPassword");
+    public static String getTestRegPassword(){
+        return getProperties().getProperty("testRegPassword");
     }
 
     public static void main(String[] args) {
