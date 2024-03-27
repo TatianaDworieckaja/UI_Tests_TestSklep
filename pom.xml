@@ -11,6 +11,7 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <baseURL>https://skleptest.pl/</baseURL>
         <browserType>CHROME</browserType>
@@ -69,13 +70,11 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version> 3.2.5</version>
                 <configuration>
-                  <!--  <suiteXmlFiles>
+                  <suiteXmlFiles>
                       <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
-                    </suiteXmlFiles> -->
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
-
 </project>
